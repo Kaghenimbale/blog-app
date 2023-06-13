@@ -14,6 +14,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_151633) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  # This is the comments table
+
   create_table "comments", force: :cascade do |t|
     t.bigint "author_id_id", null: false
     t.bigint "post_id_id", null: false
@@ -24,6 +26,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_151633) do
     t.index ["post_id_id"], name: "index_comments_on_post_id_id"
   end
 
+  # This is the likes table
+
   create_table "likes", force: :cascade do |t|
     t.bigint "like_id_id", null: false
     t.bigint "post_id_id", null: false
@@ -32,6 +36,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_151633) do
     t.index ["like_id_id"], name: "index_likes_on_like_id_id"
     t.index ["post_id_id"], name: "index_likes_on_post_id_id"
   end
+
+  # This is the posts table
 
   create_table "posts", force: :cascade do |t|
     t.bigint "author_id_id", null: false
@@ -43,6 +49,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_151633) do
     t.datetime "updated_at", null: false
     t.index ["author_id_id"], name: "index_posts_on_author_id_id"
   end
+
+  # This is the users table
 
   create_table "users", force: :cascade do |t|
     t.string "name"
