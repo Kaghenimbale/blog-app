@@ -15,6 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_151633) do
   enable_extension "plpgsql"
 
   # This is the comments table
+  # rails generate migration CreateComment author_id:references post_id:references Text:text
 
   create_table "comments", force: :cascade do |t|
     t.bigint "author_id_id", null: false
