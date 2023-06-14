@@ -28,6 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_151633) do
   end
 
   # This is the likes table
+  rails generate migration CreateLike like_id:references post_id:references
 
   create_table "likes", force: :cascade do |t|
     t.bigint "like_id_id", null: false
