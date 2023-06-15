@@ -11,6 +11,9 @@ second_user = User.create!(name: 'Lilly', photo: 'https://unsplash.com/photos/F_
 
 first_post = Post.create!(author: first_user, title: 'Hello', text: 'This is my first post')
 
+
 # comment = first_post.comments.create!(author: 1, text: 'Hi Tom!')
-comment = first_user.comments.create!(post_id: first_post, text: 'Hi Tom!')
+# comment = first_user.comments.create!(post_id: first_post, text: 'Hi Tom!')
+comment = Comment.create!(post: first_post, author: first_user, text: 'Hi Tom!')
+
 
