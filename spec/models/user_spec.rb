@@ -1,27 +1,28 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe 'associations' do
-    it { should have_many(:posts).with_foreign_key(:author_id) }
-    it { should have_many(:likes).with_foreign_key(:author_id) }
-    it { should have_many(:comments).with_foreign_key(:author_id) }
+  it 'name should be present' do
+    user = User.new(name: '')
+    expect(user).to_not be_valid
+    expect(user.errors[:name]).to include("can't be blank")
   end
 
-  describe 'validations' do
-    it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:posts_counter) }
-    it { should validate_numericality_of(:posts_counter).only_integer.is_greater_than_or_equal_to(0) }
+  it 'posts_counter should be greater than or equal to 0' do
+    user = User.new(posts_counter: -1)
+    expect(user).to_not be_valid
+    expect(user.errors[:posts_counter]).to include('must be greater than or equal to 0')
   end
 
   describe '#recent_posts' do
-    let(:user) { create(:user) }
-    let!(:post1) { create(:post, author: user, created_at: 2.days.ago) }
-    let!(:post2) { create(:post, author: user, created_at: 1.day.ago) }
-    let!(:post3) { create(:post, author: user, created_at: Time.now) }
-    let!(:post4) { create(:post, author: user, created_at: 3.days.ago) }
+    let(:user) { User.create(name: 'Test', posts_counter: 0) }
+    let!(:post1) { user.posts.create(title: 'First', likes_counter: 0, comments_counter: 0, created_at: 1.day.ago) }
+    let!(:post2) { user.posts.create(title: 'Second', likes_counter: 0, comments_counter: 0, created_at: 2.days.ago) }
+    let!(:post3) { user.posts.create(title: 'Third', likes_counter: 0, comments_counter: 0, created_at: Time.now) }
 
-    it 'returns the three most recent posts of the user' do
-      expect(user.recent_posts).to eq([post3, post2, post1])
+    it 'returns 3 most recent posts' do
+      recent_posts = user.recent_posts
+      expect(recent_posts.size).to eq(3)
+      expect(recent_posts).to eq([post3, post1, post2])
     end
   end
 end

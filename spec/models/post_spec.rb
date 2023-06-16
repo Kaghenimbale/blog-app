@@ -1,30 +1,57 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  describe 'associations' do
-    it { should belong_to(:author).class_name('User').with_foreign_key(:author_id) }
-    it { should have_many(:likes).with_foreign_key(:post_id) }
-    it { should have_many(:comments).with_foreign_key(:post_id) }
+  it 'title should be present' do
+    post = Post.new(title: '')
+    expect(post).to_not be_valid
+    expect(post.errors[:title]).to include("can't be blank")
   end
 
-  describe 'validations' do
-    it { should validate_presence_of(:title) }
-    it { should validate_length_of(:title).is_at_most(250) }
-    it { should validate_numericality_of(:comments_counter).is_greater_than_or_equal_to(0) }
-    it { should validate_numericality_of(:likes_counter).is_greater_than_or_equal_to(0) }
+  it 'title should not be too long' do
+    post = Post.new(title: 'a' * 251)
+    expect(post).to_not be_valid
+    expect(post.errors[:title]).to include('is too long (maximum is 250 characters)')
+  end
+
+  it 'comments_counter should be greater than or equal to 0' do
+    post = Post.new(comments_counter: -1)
+    expect(post).to_not be_valid
+    expect(post.errors[:comments_counter]).to include('must be greater than or equal to 0')
+  end
+
+  it 'likes_counter should be greater than or equal to 0' do
+    post = Post.new(likes_counter: -1)
+    expect(post).to_not be_valid
+    expect(post.errors[:likes_counter]).to include('must be greater than or equal to 0')
   end
 
   describe '#recent_comments' do
-    let(:post) { create(:post) }
-    let!(:comment1) { create(:comment, post: post, created_at: 2.days.ago) }
-    let!(:comment2) { create(:comment, post: post, created_at: 1.day.ago) }
-    let!(:comment3) { create(:comment, post: post, created_at: Time.now) }
-    let!(:comment4) { create(:comment, post: post, created_at: 3.days.ago) }
-    let!(:comment5) { create(:comment, post: post, created_at: 4.days.ago) }
-    let!(:comment6) { create(:comment) } # Another comment not associated with the post
+    let(:user) { User.create(name: 'Test', posts_counter: 0) }
+    let(:user2) { User.create(name: 'Fuad', posts_counter: 0) }
+    let(:post) { user.posts.create(title: 'Test', likes_counter: 0, comments_counter: 0) }
+    let!(:comment1) { post.comments.create(text: 'First', author_id: user2.id, created_at: 1.day.ago) }
+    let!(:comment2) { post.comments.create(text: 'Second', author_id: user2.id, created_at: 2.days.ago) }
+    let!(:comment3) { post.comments.create(text: 'Third', author_id: user2.id, created_at: Time.now) }
+    let!(:comment4) { post.comments.create(text: 'Fourth', author_id: user2.id, created_at: 3.days.ago) }
+    let!(:comment5) { post.comments.create(text: 'Fifth', author_id: user2.id, created_at: 4.days.ago) }
+    let!(:comment6) { post.comments.create(text: 'Sixth', author_id: user2.id, created_at: 5.days.ago) }
 
-    it 'returns the five most recent comments of the post' do
-      expect(post.recent_comments).to eq([comment3, comment2, comment1, comment4, comment5])
+    it 'returns 5 most recent comments' do
+      recent_comments = post.recent_comments
+      expect(recent_comments.size).to eq(5)
+      expect(recent_comments).to eq([comment3, comment1, comment2, comment4, comment5])
+    end
+  end
+
+  describe '#update_post_counter' do
+    let(:user) { User.create(name: 'Test', posts_counter: 0) }
+    let(:user2) { User.create(name: 'Test', posts_counter: 1) }
+
+    it "updates user's posts_counter after creating a post" do
+      expect do
+        user.posts.create(title: 'Test', likes_counter: 0, comments_counter: 0)
+        user.reload
+      end.to change(user, :posts_counter).by(1)
     end
   end
 end

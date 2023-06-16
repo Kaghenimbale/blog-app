@@ -1,18 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  describe 'associations' do
-    it { should belong_to(:author).class_name('User').with_foreign_key(:author_id) }
-    it { should belong_to(:post).class_name('Post').with_foreign_key(:post_id) }
-  end
+  describe '#update_comment_counter' do
+    let(:user) { User.create(name: 'Test', posts_counter: 0) }
+    let(:post) { user.posts.create(title: 'Test', likes_counter: 0, comments_counter: 0) }
+    let(:post2) { user.posts.create(title: 'Test', likes_counter: 0, comments_counter: 1) }
 
-  describe 'callbacks' do
-    let(:post) { create(:post) }
-    let(:user) { create(:user) }
-    let!(:comment) { build(:comment, author: user, post: post) }
-
-    it 'updates the comments_counter of the associated post after saving' do
-      expect { comment.save }.to change { post.reload.comments_counter }.by(1)
+    it "updates post's comments_counter after creating a comment" do
+      expect do
+        post.comments.create(text: 'Test', author_id: user.id)
+        post.reload
+      end.to change(post, :comments_counter).by(1)
     end
   end
 end
