@@ -99,6 +99,10 @@ To run the project, execute the following command:
 To run tests, run the following command:
 
 ```sh
+  rspec spec
+```
+
+```sh
   bin/rails test test/models/article_test.rb
 ```
 
