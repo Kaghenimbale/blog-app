@@ -8,12 +8,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.2'
 
-gem 'i18n', '1.8.11'
-gem 'tzinfo', '2.0.4'
 gem 'concurrent-ruby', '1.1.6'
+gem 'i18n', '1.8.11'
 gem 'minitest', '5.14.2'
-
-
+gem 'tzinfo', '2.0.4'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.5'
@@ -64,7 +62,6 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'rspec-rails'
-
 end
 
 group :development do
@@ -82,6 +79,6 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'selenium-webdriver'
-  gem 'webdrivers'
   gem 'shoulda-matchers', '~> 4.0'
+  gem 'webdrivers'
 end
