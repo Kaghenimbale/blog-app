@@ -23,4 +23,3 @@ RSpec.describe PostsHelper, type: :helper do
     end
   end
 end
-
