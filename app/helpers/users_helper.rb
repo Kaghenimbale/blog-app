@@ -1,2 +1,6 @@
 module UsersHelper
-end
+    def name(user)
+      user.name
+    end
+  end
+  
