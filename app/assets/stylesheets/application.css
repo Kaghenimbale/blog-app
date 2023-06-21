@@ -75,10 +75,17 @@ body {
 .posts {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
 }
 
-.post {
+.post_all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.post,
+.comments {
   padding: 1rem;
   border: 2px solid black;
   border-radius: 10px;
@@ -87,8 +94,47 @@ body {
   gap: 1rem;
 }
 
+.post_comment {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .comment_likes {
   display: flex;
   gap: 0.5rem;
   justify-content: flex-end;
+}
+
+.comment_like {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.content {
+  border: 2px solid black;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  gap: 2rem;
+}
+
+.comment-like-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.all_posts {
+  width: 100px;
+  border: 2px solid black;
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+}
+
+.post-show {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }

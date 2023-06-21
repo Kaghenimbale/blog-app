@@ -1,2 +1,50 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<div class="post-show">
+<div class="user">
+<div class="user-profile">
+  <img src='<%= @user.photo%>' alt="user_profile" />
+</div>
+<div class="user-description">
+  <h2>
+  <%= @user.name %>
+  </h2>
+  <p>Number of post: <%= @user.posts_counter %></p>
+</div>
+</div>
+
+<div class="posts">
+<% @posts.each do |post| %>
+    <%= link_to(user_post_path(@user, post)) do %>
+<div class="post_comment">
+<div class="post">
+<p> Post #<%= post.id %> </p>
+<div>
+   <p><%= post.text %></p>
+   <div class="comment_likes">
+     <p> comments: <%= post.comments_counter %> </p>
+     <p> likes: <%= post.likes_counter %> </p>
+   </div>
+</div>
+</div>
+
+<div class="comments">
+<% if post.comments == [] %>
+  <p>No comments !!!</p>
+<% end %>
+
+<% post.comments.order('created_at DESC').limit(5).each do |comment|%>
+  <div class="comment-container">
+    <span><%=comment.author.name %>:</span>
+    <span><%=comment.text %></span>
+  </div>
+<% end %>
+</div>
+</div>
+<% end %>
+<% end %>
+</div>
+</div>
+</div>
+</br>
+<div class="post_all">
+<button class='all_posts'>Pagination</button>
+</div>
