@@ -12,7 +12,24 @@
 </div>
 
 <div class='bio'>
+<h3>Bio :</h3>
 <%= @user.bio %>
+</div>
+
+<div class="posts">
+<% @user.recent_posts.each do |post| %>
+    <div class="post">
+      <p> Post #<%= post.id %> </p>
+      <div>
+         <p><%= post.text %></p>
+         <div class="comment_likes">
+           <p> comments: <%= post.comments_counter %> </p>
+           <p> likes: <%= post.likes_counter %> </p>
+         </div>
+      </div>
+    </div>
+<% end %>
+<%= link_to 'See all posts', user_posts_path(@user) %>
 </div>
 </div>
 

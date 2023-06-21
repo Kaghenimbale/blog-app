@@ -64,8 +64,31 @@ body {
 }
 
 .bio {
-  padding: 2rem;
+  padding: 1rem;
   border: 2px solid black;
   border-radius: 10px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.post {
+  padding: 1rem;
+  border: 2px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.comment_likes {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
 }
