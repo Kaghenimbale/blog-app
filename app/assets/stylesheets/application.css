@@ -6,6 +6,12 @@
     'Lucida Sans', Arial, sans-serif;
 }
 
+body {
+  margin: 0 auto;
+  width: 60vw;
+  padding: 2rem 0;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -15,8 +21,6 @@
 }
 
 .user {
-  margin: 0 auto;
-  width: 60vw;
   display: grid;
   grid-template-columns: 15% 80%;
   justify-content: space-between;
@@ -27,10 +31,12 @@
   height: 8rem;
   border: 2px solid black;
   border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bolder;
+}
+
+.user-profile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .user-description {
@@ -50,4 +56,16 @@
   display: flex;
   align-items: end;
   font-weight: bolder;
+}
+
+.show-user {
+  display: grid;
+  gap: 2rem;
+}
+
+.bio {
+  padding: 2rem;
+  border: 2px solid black;
+  border-radius: 10px;
+  text-align: center;
 }

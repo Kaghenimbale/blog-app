@@ -1,4 +1,18 @@
+<div class='show-user'>
+<div class="user">
+<div class="user-profile">
+  <img src='<%= @user.photo%>' alt="user_profile" />
+</div>
+<div class="user-description">
+  <h2>
+  <%= @user.name %>
+  </h2>
+  <p>Number of post: <%= @user.posts_counter %></p>
+</div>
+</div>
 
+<div class='bio'>
+<%= @user.bio %>
+</div>
+</div>
 
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
