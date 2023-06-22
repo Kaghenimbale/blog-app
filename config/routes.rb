@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   get '/posts/show', to: 'posts#show'
 
   resources :users, only: %i[index show] do
-    resources :posts, only: %i[index show]
+    resources :posts, only: %i[index show, :new, :create]
   end
 end
