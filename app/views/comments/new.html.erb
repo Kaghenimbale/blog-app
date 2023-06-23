@@ -1,16 +1,16 @@
-<%= form_with(model: @comment, url: {action: "create"}) do |form| %>
+<%= form_with(model: @comment, class:"container", url: {action: "create"}) do |form| %>
 
-    <div class="input">
+    <div class="text-box">
       <%= form.label :text %>
-      <%= form.text_area :text %>
+      <%= form.text_area :text, class:"input-area" %>
     </div>
   
-    <div class="submit d-flex">
+    <div class="add-post">
+    <button class="btn btn-like">
       <%= form.submit "submit" %>
-    </div>
+    </button>
   
-    <div class="post-btn">
-      <button>
+      <button class="btn">
         <%= link_to "back",  user_post_path(@user, @post)%>
       </button>
     </div>
