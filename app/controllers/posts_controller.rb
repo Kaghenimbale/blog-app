@@ -7,7 +7,6 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = User.find(params[:user_id])
-    @likes = @post.likes_counter + 1
   end
 
   def create 

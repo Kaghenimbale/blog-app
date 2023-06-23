@@ -1,0 +1,6 @@
+
+<%= form_with(model: @likes, url: {action: "create"}) do |form| %>
+    <div class="submit d-flex">
+      <%= form.submit "Like" %>
+    </div>
+<% end %>

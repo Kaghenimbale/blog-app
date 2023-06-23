@@ -1,0 +1,17 @@
+<%= form_with(model: @comment, url: {action: "create"}) do |form| %>
+
+    <div class="input">
+      <%= form.label :text %>
+      <%= form.text_area :text %>
+    </div>
+  
+    <div class="submit d-flex">
+      <%= form.submit "submit" %>
+    </div>
+  
+    <div class="post-btn">
+      <button>
+        <%= link_to "back",  user_post_path(@user, @post)%>
+      </button>
+    </div>
+  <% end %>
