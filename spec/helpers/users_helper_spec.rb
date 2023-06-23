@@ -13,3 +13,13 @@ require 'rails_helper'
 RSpec.describe UsersHelper, type: :helper do
   pending "add some examples to (or delete) #{__FILE__}"
 end
+
+RSpec.describe UsersHelper, type: :helper do
+  describe '#name' do
+    it 'returns the name correctly' do
+      user = User.new(name: 'John Doe')
+      name = helper.name(user)
+      expect(name).to eq('John Doe')
+    end
+  end
+end

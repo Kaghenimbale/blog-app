@@ -13,3 +13,13 @@ require 'rails_helper'
 RSpec.describe PostsHelper, type: :helper do
   pending "add some examples to (or delete) #{__FILE__}"
 end
+
+RSpec.describe PostsHelper, type: :helper do
+  describe '#format_date' do
+    it 'formats the date correctly' do
+      date = Time.zone.parse('2023-06-20')
+      formatted_date = helper.format_date(date)
+      expect(formatted_date).to eq('June 20, 2023')
+    end
+  end
+end

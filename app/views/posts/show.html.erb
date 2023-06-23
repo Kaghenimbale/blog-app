@@ -1,2 +1,37 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="container">
+<div class="content">
+<div class="comment-like-container">
+  <p> Post #<%= @post.id %> by <%= @user.name %> </p>
+  <div class="comment_like">
+  <p> comments: <%= @post.comments_counter %> </p>
+  <p> likes: <%= @post.likes_counter %> </p>
+</div>
+</div>
+
+<div>
+  <%= @post.text %>
+</div>
+</div>
+
+<% @post.comments.order('created_at DESC').limit(5).each do |comment|%>
+  <div class="content">
+    <p><%=comment.author.name %>: <span><%=comment.text %></span></p>
+  </div>
+<% end %>
+
+<div class="add-post">
+<button class="btn">
+<%= link_to "Add Comment", new_user_post_comment_path(@user, @post)%>
+</button>
+
+<buttons>
+<%= button_to "Add Like", user_post_likes_path(@user, @post), method: :post, class:"btn" %>
+</button>
+</div>
+
+<div class="post-btn">
+  <button class="btn">
+    <%= link_to "back",  user_posts_path(@user)%>
+  </button>
+</div>
+
