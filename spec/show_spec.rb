@@ -7,9 +7,9 @@ RSpec.describe 'User show page', type: :system do
 
   let!(:posts) do
     user.posts.create([
-      { text: 'First post', comments_counter: 2, likes_counter: 5 },
-      { text: 'Second post', comments_counter: 3, likes_counter: 7 }
-    ])
+                        { text: 'First post', comments_counter: 2, likes_counter: 5 },
+                        { text: 'Second post', comments_counter: 3, likes_counter: 7 }
+                      ])
   end
 
   it 'displays user information and posts' do
