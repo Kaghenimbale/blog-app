@@ -1,8 +1,10 @@
-require 'rails_helper'
+require 'capybara/rails'
+require 'capybara/minitest'
 
 RSpec.describe 'User show page', type: :system do
   let!(:user) do
     User.create(name: 'John', photo: 'https://example.com/profile.jpg', bio: 'Software Engineer')
+    User.create(name: 'Daniel', photo: 'https://example.com/profile.jpg', bio: 'Electrical Engineer')
   end
 
   let!(:posts) do
@@ -19,6 +21,15 @@ RSpec.describe 'User show page', type: :system do
 
     expect(page).to have_content('Bio :')
     expect(page).to have_content('Software Engineer')
+  end
+
+  it 'displays user information and posts' do
+    visit user_path(user)
+    expect(page).to have_content('Daniel')
+    expect(page).to have_content("Number of post: #{user.posts_counter}")
+
+    expect(page).to have_content('Bio :')
+    expect(page).to have_content('Electrical Engineer')
   end
 
   it 'displays user profile' do
