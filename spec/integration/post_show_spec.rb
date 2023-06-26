@@ -4,6 +4,7 @@ RSpec.describe 'Post show page', type: :system do
   let!(:users) do
     User.create([{ name: 'Lilly', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Poland.' },
                  { name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from England.' },
+                 { name: 'Dan', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Analyst from .' },
                  { name: 'Chris', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Web Developer.' }])
   end
   let!(:posts) do

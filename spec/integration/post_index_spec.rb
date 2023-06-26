@@ -8,7 +8,8 @@ RSpec.describe 'User post index page', type: :system do
   let!(:posts) do
     user.posts.create([
                         { text: 'First post', comments_counter: 2, likes_counter: 5 },
-                        { text: 'Second post', comments_counter: 3, likes_counter: 7 }
+                        { text: 'Second post', comments_counter: 3, likes_counter: 7 },
+                        { text: 'Third post', comments_counter: 8, likes_counter: 17 },
                       ])
   end
 
