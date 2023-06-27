@@ -1,5 +1,4 @@
-require 'capybara/rails'
-require 'capybara/minitest'
+require 'rails_helper'
 
 RSpec.describe 'User show page', type: :system do
   let!(:user) do
