@@ -16,11 +16,11 @@ RSpec.describe 'User show page', type: :system do
 
   it 'displays user information and posts' do
     visit user_path(user)
-    expect(page).to have_content('John')
+    expect(page).to have_content(user.name)
     expect(page).to have_content("Number of post: #{user.posts_counter}")
 
     expect(page).to have_content('Bio :')
-    expect(page).to have_content('Software Engineer')
+    expect(page).to have_content(user.bio)
   end
 
   it 'displays user information and posts' do

@@ -23,7 +23,7 @@ RSpec.describe 'User post index page', type: :system do
   it 'redirects to post show page when a post is clicked' do
     visit user_posts_path(user)
     expect(page).to have_css('.post-show')
-    expect(page).to have_content('John')
+    expect(page).to have_content(user.name)
     expect(page).to have_content("Number of post: #{user.posts_counter}")
   end
 end
