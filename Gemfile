@@ -12,7 +12,7 @@ ruby '3.0.2'
 
 gem 'concurrent-ruby', '1.1.6'
 gem 'i18n', '1.8.11'
-gem 'minitest', '5.14.2'
+gem 'minitest', '5.18.1'
 gem 'tzinfo', '2.0.4'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
