@@ -50,6 +50,11 @@ RSpec.describe 'Post show page', type: :system do
       end
     end
 
+    it 'shows a post title' do
+      visit user_posts_path(users[0])
+      expect(page).to have_content(posts[0].text)
+    end
+
     it 'shows the comment each commentor left' do
       Comment.create!(author: users[0], post: posts[0], text: 'It was really nice to meet you')
       Comment.create!(author: users[2], post: posts[0], text: 'good')
