@@ -65,4 +65,3 @@ RSpec.describe 'Post index page', type: :system do
     end
   end
 end
-
