@@ -1,0 +1,22 @@
+<%= form_with(model: @post, url: {action: "create"}) do |form| %>
+  <div class="form">
+    <div>
+    <%= form.label :title %>: 
+    <%= form.text_field :title, class:"input_field" %>
+  </div>
+  <div class="text-box">
+    <%= form.label :text %>
+    <%= form.text_area :text, class:"input-area" %>
+  </div>
+
+    <div>
+        <%= form.submit "submit", class:"btn" %>
+    </div>
+
+  <div class="post-btn">
+    <button class="btn">
+      <%= link_to "back",  user_posts_path(@user)%>
+    </button>
+  </div>
+  </div>
+<% end %>
