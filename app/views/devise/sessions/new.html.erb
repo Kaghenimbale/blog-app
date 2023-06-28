@@ -4,12 +4,12 @@
   <div class="form">
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"input_field" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"input_field input" %>
   </div>
 
   <div class="field">
     <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password", class:"input_field" %>
+    <%= f.password_field :password, autocomplete: "current-password", class:"input_field input" %>
   </div>
 
   <% if devise_mapping.rememberable? %>
@@ -20,7 +20,7 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in", class:"btn" %>
+    <%= f.submit "Log in", class:"btn input" %>
   </div>
   </div>
 <% end %>

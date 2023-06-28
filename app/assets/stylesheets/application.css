@@ -1,13 +1,8 @@
 * {
   padding: 0;
   margin: 0;
-  font-family:
-    'Trebuchet MS',
-    'Lucida Sans Unicode',
-    'Lucida Grande',
-    'Lucida Sans',
-    Arial,
-    sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
 }
 
 body {
@@ -173,8 +168,14 @@ body {
   padding: 0.5rem;
 }
 
+.input {
+  width: 60vw;
+}
+
 .form {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 1rem;
 }
