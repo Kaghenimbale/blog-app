@@ -15,7 +15,7 @@ gem 'i18n', '1.8.11'
 gem 'minitest', '5.18.1'
 gem 'tzinfo', '2.0.4'
 
-gem "letter_opener", group: :development
+gem 'letter_opener', group: :development
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.5'
 
