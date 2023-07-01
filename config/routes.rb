@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
+  namespace :api do
+    get '/users/:user_id/posts', to: 'posts#index'
+    post '/comments', to: 'comments#create'
+    get '/users/:user_id/posts/:post_id/comments', to: 'comments#index'
+  end
+
   # Defines the root path route ("/")
   root "users#index"
 
