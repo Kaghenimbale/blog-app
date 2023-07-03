@@ -2,7 +2,6 @@
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
-require 'spec_helper'
 require 'shoulda/matchers'
 require 'shoulda/matchers/active_model'
 require 'shoulda/matchers/active_record'

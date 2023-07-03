@@ -14,11 +14,11 @@ RSpec.describe 'Post index page', type: :system do
 
   describe 'Post index' do
     it 'shows user profile picture' do
-        visit user_posts_path(users[0])
-        profile_picture = find('img[alt="user_profile"]')
-        expect(profile_picture).to be_visible
+      visit user_posts_path(users[0])
+      profile_picture = find('img[alt="user_profile"]')
+      expect(profile_picture).to be_visible
     end
-      
+
     it 'shows user name' do
       visit user_posts_path(users[0])
       expect(page).to have_content(users[0].name)
