@@ -5,8 +5,6 @@ gem 'rubocop', '>= 1.0', '< 2.0'
 
 gem 'rspec'
 
-gem 'cancancan'
-
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -17,7 +15,6 @@ gem 'i18n', '1.8.11'
 gem 'minitest', '5.18.1'
 gem 'tzinfo', '2.0.4'
 
-gem 'letter_opener', group: :development
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.5'
 
@@ -26,8 +23,6 @@ gem 'sprockets-rails'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
-
-gem 'devise'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.0'
@@ -69,14 +64,6 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'rspec-rails'
-
-  # Capybara, the library that allows us to interact with the browser using Ruby
-  gem 'capybara'
-
-  # The following gems aids with the nuts and bolts
-  # of interacting with the browser.
-  gem 'selenium-webdriver'
-  gem 'webdrivers'
 end
 
 group :development do
@@ -92,5 +79,8 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem 'capybara'
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 4.0'
+  gem 'webdrivers'
 end

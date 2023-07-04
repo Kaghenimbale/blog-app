@@ -1,68 +1,54 @@
 require 'rails_helper'
-RSpec.describe 'Post show page', type: :system do
-  let!(:users) do
-    User.create([{ name: 'Lilly', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Poland.' },
-                 { name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from England.' },
-                 { name: 'Dan', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Analyst from Texas.' },
-                 { name: 'Chris', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Web Developer.' }])
-  end
-  let!(:posts) do
-    Post.create!([{ author: users[0], title: 'First Post', text: 'My first post' },
-                  { author: users[1], title: 'Second Post', text: 'My Second post' },
-                  { author: users[2], title: 'Third Post', text: 'My Third post' },
-                  { author: users[3], title: 'Fourth Post', text: 'My Fourth post' }])
-  end
-  describe 'Post show' do
-    it 'shows who wrote the post' do
-      visit user_post_path(users[0], posts[0])
-      expect(page).to have_content(posts[0].author.name)
-    end
-    it 'shows how many comments a post has' do
-      Comment.create!(author: users[0], post: posts[0], text: 'It was really nice to meet you')
-      Comment.create!(author: users[1], post: posts[0], text: 'It was really nice to meet you')
-      Comment.create!(author: users[2], post: posts[0], text: 'It was really nice to meet you')
-      visit user_post_path(users[0], posts[0])
-      expect(page).to have_content(posts[0].comments_counter)
-    end
-    it 'shows the profile picture of the user' do
-      visit user_post_path(users[0], posts[0])
-      expect(page).to have_css("img[src='#{users[0].photo}']")
-    end
 
-    it "shows the user's bio" do
-      visit user_post_path(users[0], posts[0])
-      expect(page).to have_content(users[0].bio)
-    end
-    it 'shows how many likes a post has' do
-      Like.create!(author: users[0], post: posts[0])
-      Like.create!(author: users[1], post: posts[0])
-      Like.create!(author: users[2], post: posts[0])
-      Like.create!(author: users[3], post: posts[0])
-      visit user_post_path(users[0], posts[0])
-      expect(page).to have_content(posts[0].likes_counter)
-    end
-    it 'shows the post body' do
-      visit user_post_path(users[0], posts[0])
-      expect(page).to have_content(posts[0].text)
-    end
-    it 'shows the username of each commentor' do
-      Comment.create!(author: users[0], post: posts[0], text: 'It was really nice to meet you')
-      visit user_post_path(users[0], posts[0])
-      posts[0].comments.each do |comment|
-        expect(page).to have_content(comment.author.name)
-      end
-    end
-    it 'shows a post title' do
-      visit user_posts_path(users[0])
-      expect(page).to have_content(posts[0].text)
-    end
-    it 'shows the comment each commentor left' do
-      Comment.create!(author: users[0], post: posts[0], text: 'It was really nice to meet you')
-      Comment.create!(author: users[2], post: posts[0], text: 'good')
-      visit user_post_path(users[0], posts[0])
-      posts[0].comments.each do |comment|
-        expect(page).to have_content(comment.text)
-      end
-    end
+RSpec.describe 'User show page', type: :system do
+  let!(:user) do
+    User.create(name: 'John', photo: 'https://example.com/profile.jpg', bio: 'Software Engineer')
+    User.create(name: 'Daniel', photo: 'https://example.com/profile.jpg', bio: 'Electrical Engineer')
+  end
+
+  let!(:posts) do
+    user.posts.create([
+                        { text: 'First post', comments_counter: 2, likes_counter: 5 },
+                        { text: 'Second post', comments_counter: 3, likes_counter: 7 },
+                        { text: 'Third post', comments_counter: 2, likes_counter: 10 }
+                      ])
+  end
+
+  it 'displays user information and posts' do
+    visit user_path(user)
+    expect(page).to have_content(user.name)
+    expect(page).to have_content("Number of post: #{user.posts_counter}")
+
+    expect(page).to have_content('Bio :')
+    expect(page).to have_content(user.bio)
+  end
+
+  it 'displays user information and posts' do
+    visit user_path(user)
+    expect(page).to have_content('Daniel')
+    expect(page).to have_content("Number of post: #{user.posts_counter}")
+
+    expect(page).to have_content('Bio :')
+    expect(page).to have_content('Electrical Engineer')
+  end
+
+  it 'displays user profile' do
+    visit user_path(user)
+
+    expect(page).to have_css('.user-profile img[src*="https://example.com/profile.jpg"]')
+  end
+
+  it 'displays user posts path' do
+    visit user_path(user)
+
+    expect(page).to have_link('See all posts', href: user_posts_path(user), class: 'all_posts')
+  end
+
+  it 'redirects to the user\'s post\'s index page when clicking on the "See all posts" button' do
+    visit user_path(user)
+
+    click_link('See all posts')
+
+    expect(page).to have_current_path(user_posts_path(user))
   end
 end
