@@ -24,15 +24,15 @@ RSpec.describe 'Post show page', type: :system do
       visit user_post_path(users[0], posts[0])
       expect(page).to have_content(posts[0].comments_counter)
     end
-    it "shows the profile picture of the user" do
+    it 'shows the profile picture of the user' do
       visit user_post_path(users[0], posts[0])
       expect(page).to have_css("img[src='#{users[0].photo}']")
     end
-    
+
     it "shows the user's bio" do
       visit user_post_path(users[0], posts[0])
       expect(page).to have_content(users[0].bio)
-    end    
+    end
     it 'shows how many likes a post has' do
       Like.create!(author: users[0], post: posts[0])
       Like.create!(author: users[1], post: posts[0])
