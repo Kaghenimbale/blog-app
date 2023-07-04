@@ -17,7 +17,13 @@
   <div class="content">
     <p><%=comment.author.name %>: <span><%=comment.text %></span></p>
   </div>
+
+  <% if can? :destroy, comment %>
+  <%= button_to 'Delete comment', user_post_comment_path(@user, @post, comment), method: :delete, class:"btn" %>
 <% end %>
+
+<% end %>
+</div>
 
 <div class="add-post">
 <button class="btn">
@@ -29,9 +35,15 @@
 </button>
 </div>
 
+</br>
+
+<% if current_user.admin? || can?(:destroy, @post) %>
+<%= button_to 'Delete Post', user_post_path(@post), method: :delete, class:"btn" %>
+<% end %>
+</br>
+
 <div class="post-btn">
   <button class="btn">
     <%= link_to "back",  user_posts_path(@user)%>
   </button>
 </div>
-

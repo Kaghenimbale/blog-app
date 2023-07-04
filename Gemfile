@@ -5,6 +5,8 @@ gem 'rubocop', '>= 1.0', '< 2.0'
 
 gem 'rspec'
 
+gem 'cancancan'
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -12,9 +14,10 @@ ruby '3.0.2'
 
 gem 'concurrent-ruby', '1.1.6'
 gem 'i18n', '1.8.11'
-gem 'minitest', '5.14.2'
+gem 'minitest', '5.18.1'
 gem 'tzinfo', '2.0.4'
 
+gem 'letter_opener', group: :development
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.5'
 
@@ -23,6 +26,8 @@ gem 'sprockets-rails'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
+
+gem 'devise'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.0'
