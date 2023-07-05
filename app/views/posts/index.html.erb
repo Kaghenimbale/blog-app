@@ -36,6 +36,11 @@
     <span><%=comment.author.name %>:</span>
     <span><%=comment.text %></span>
   </div>
+
+  <% if current_user.admin? || can?(:destroy, comment) %>
+  <%= button_to 'Delete', user_post_comment_path(@user, comment.post, comment), method: :delete %>
+<% end %>
+
 <% end %>
 </div>
 </div>

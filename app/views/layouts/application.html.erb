@@ -13,17 +13,18 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <% if user_signed_in? %>
-    <div class='add-post'>
-    <% if current_user && current_user.role == "admin" %>
-    <h2>Welcome, Admin!</h2>
-    <% else %>
-    <h2>Welcome, Normal User!</h2>
-    <% end %>
-    <a href="<%= destroy_user_session_path %>" data-method="delete">Sign Out</a>
-    </div>
-    <%end%>
-    </br>
+        <% if user_signed_in? %>
+        <div class='add-post'>
+        <% if current_user && current_user.role == "admin" %>
+        <h2>Welcome, Admin!</h2>
+        <% else %>
+        <h2>Welcome, Normal User!</h2>
+        <% end %>
+        <a href="<%= destroy_user_session_path %>" data-method="delete">Sign Out</a>
+        </div>
+        <%end%>
+        </br>
+
     <%= yield %>
   </body>
 </html>
