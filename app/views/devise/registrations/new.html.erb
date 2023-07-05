@@ -14,12 +14,6 @@
 </div>
 
   <div class="field">
-  <%= f.label :role %><br />
-  <h3>Choose: User or Admin</h3>
-  <%= f.text_field :role, class:"input_field input"  %>
-  </div>
-
-  <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
