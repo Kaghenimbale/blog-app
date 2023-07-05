@@ -11,12 +11,7 @@
   <div class="field">
   <%= f.label :name %><br />
   <%= f.text_field :name, class:"input_field input"  %>
-
-  <div class="field">
-  <%= f.label :role %><br />
-  <h3>Choose: User or Admin</h3>
-  <%= f.text_field :role, class:"input_field input"  %>
-  </div>
+</div>
 
   <div class="field">
     <%= f.label :password %>
@@ -31,7 +26,6 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"input_field input"  %>
   </div>
 
-  </br>
   <div class="actions">
     <%= f.submit "Sign up", class:"btn"  %>
   </div>
