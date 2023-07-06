@@ -7,10 +7,14 @@ Rails.application.routes.draw do
 
   delete '/sign_out', to: 'sessions#destroy', as: :custom_destroy_user_session
 
-  namespace :api do
-    get '/users/:user_id/posts', to: 'posts#index'
-    post '/comments', to: 'comments#create'
-    get '/users/:user_id/posts/:post_id/comments', to: 'comments#index'
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :users, only: [:index, :show] do
+        resources :posts, only: [:index, :show] do
+          resources :comments, only: [:index, :create]
+        end
+      end
+    end
   end
   
   resources :users, only: %i[index show] do

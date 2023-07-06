@@ -5,6 +5,8 @@ gem 'rubocop', '>= 1.0', '< 2.0'
 
 gem 'rspec'
 
+gem 'active_model_serializers', '~> 0.10.13'
+
 gem 'cancancan'
 
 source 'https://rubygems.org'
